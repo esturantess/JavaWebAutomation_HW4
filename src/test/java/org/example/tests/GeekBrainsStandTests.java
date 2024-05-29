@@ -20,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class GeekBrainsStandTests {
 
     private WebDriver driver;
-    private WebDriverWait wait;
     private LoginPage loginPage;
     private MainPage mainPage;
 
@@ -48,7 +47,6 @@ public class GeekBrainsStandTests {
         driver = WebDriverRunner.getWebDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         loginPage = new LoginPage();
     }
 
@@ -69,7 +67,6 @@ public class GeekBrainsStandTests {
         ProfilePage profilePage = Selenide.page(ProfilePage.class);
         profilePage.clickEditIconInAvatarSection();
         profilePage.updateBirthDate("10", "05", "2010");
-        Selenide.sleep(5000);
         profilePage.saveChangesInEditingPopup();
         profilePage.closeEditingPopup();
         assertEquals(profilePage.getBirthDateFromAdditionalInfo(), "05.10.2010");
